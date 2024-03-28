@@ -21,3 +21,31 @@ En este tipo de asociación, múltiples registros en una tabla pueden estar asoc
 
 ![Diagrama](../img/Captura4.PNG)
 [Ejemplo de Asociaciones Uno a Muchos](../Asociaciones/asociacionNaN.sql).
+
+## Ejemplo de inserción en asociaciones 1:N
+```sql
+INSERT INTO Persona VALUES (tipoPersona(1, "Francisco García", ….));
+INSERT INTO Persona VALUES (tipoPersona(2,"Luisa Pérez", …));
+
+DECLARE -- Bloque PL/SQL para insertar un proyecto donde trabajan estas dos personas
+
+Ref_Persona1 REF tipoPersona;
+Ref_Persona2 REF tipoPersona;
+
+BEGIN
+    SELECT REF(Persona1) INTO Ref_Persona1 FROM Persona Persona1 WHERE IDPersona=1;
+    SELECT REF(Persona2) INTO Ref_Persona2 FROM Persona Persona2 WHERE IDPersona=2;
+    INSERT INTO Proyecto
+    VALUES (tipoProyecto(1,300000.00,Tipo_Participantes(Ref_Persona1, Ref_Persona2)));
+END;
+
+DECLARE -- Bloque PL/SQL para actualizar la referencia a este proyecto en la tabla Personas
+
+Ref_Proyecto1 REF tipoProyecto;
+
+BEGIN
+    SELECT REF(Proyecto1) INTO Ref_Proyecto1 FROM Proyecto Proyecto1
+    WHERE IDProyecto=1;
+    UPDATE Persona SET Desarrolla= Ref_Proyecto1 WHERE IDPersona IN (1,2);
+END;
+```
