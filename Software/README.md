@@ -9,4 +9,4 @@ Los distintos tipos son:
 Las clases además de tener estructuras también pueden poseer métodos.
 La declaración se realizan con CREATE TYPE y su definición con CREATE TYPE BODY.
 
-[Ejemplo de método](/EjerciciosTABD/Software/metodo.sql).
+[Ejemplo de método](../Software/metodo.sql).

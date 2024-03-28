@@ -6,5 +6,5 @@ Además, los métodos, es decir, las acciones que se pueden realizar en cada obj
 Estos objetos, a su vez, se clasifican en clases, estableciendo una jerarquía de clases y subclases. En esta estructura, las subclases heredan las propiedades de las clases superiores y pueden añadir sus propios atributos. Sin embargo, esta jerarquía no es rígida, ya que los objetos de una clase pueden relacionarse con objetos de otras clases, formando redes. Además, los objetos simples pueden combinarse para crear objetos más complejos.
 
 ## Ejemplo
-![Diagrama](/EjerciciosTABD/img/Captura1.PNG)
-[Ejemplo de clase con Claves, Primarias y Alternativas, atributos compuestos, multievaluados y función](/EjerciciosTABD/Clases/clase.sql).
+![Diagrama](../img/Captura1.PNG)
+[Ejemplo de clase con Claves, Primarias y Alternativas, atributos compuestos, multievaluados y función](../Clases/clase.sql).
