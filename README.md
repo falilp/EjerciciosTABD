@@ -9,3 +9,5 @@ operadores definidos por el usuario y Disparadores)
 - BLOBS y CLOBS
 - Clases
 - Asociaciones
+- Relaciones
+- Ejercicios
