@@ -136,3 +136,34 @@ CREATE TABLE Matricula (
 [Solución](../Ejercicios/ejercicio4.sql).
 
 ## Ejercicio 5
+Escribe una función PL/SQL que devuelva el número de alumnos que hay matriculados en una edición e de un curso c, valores que se reciben como parámetros de entrada.
+
+A continuación, utiliza esta función para escribir una consulta que devuelva para un curso concreto c, su información general y la información de cada edición programada, incluyendo para cada edición el número total de alumnos matriculados en ella.
+
+[Solución](../Ejercicios/ejercicio5.sql).
+
+## Ejercicio 6
+Crea un paquete PL/SQL agrupando la función y el procedimiento creados en esta práctica.
+
+Construye un bloque PL/SQL anónimo que realice una llamada a cada uno de los componentes del paquete.
+
+[Solución](../Ejercicios/ejercicio6.sql).
+
+## Ejercicio 7
+Escribe un disparador que realice el seguimiento de las operaciones de modificación realizadas sobre la tabla Empleados (CodigoEmpleado, Nombre, Sueldo). El disparador llevará un control de todas las modificaciones que se realicen sobre esta tabla guardando una información común para todas las acciones y otra información específica en el caso de que la modificación proceda de una actualización.
+
+La información común para todas las acciones es:
+
+- Código único generado automáticamente para identificar cada modificación realizada sobre la tabla.
+- Nombre del usuario que realiza la modificación.
+- Hora en la que se realiza la modificación.
+- La acción realizada ("insert", "update" o "delete").
+- El valor correspondiente a la clave primaria de la fila modificada. 
+- La información específica sólo debe guardarse cuando se produzca una actualización. En este caso, además de la información anterior se deberá almacenar el detalle correspondiente a esta actualización, consistente en: el nombre del atributo modificado, el valor anterior y el valor actual tras la modificación.
+
+Realizar dos implementaciones para generar el código único de cada acción:
+
+a-Utilizando una secuencia. 
+b-Utilizando una columna identidad. 
+
+[Solución](../Ejercicios/ejercicio7.sql).

@@ -34,28 +34,23 @@ CREATE TABLE Matricula (
     CONSTRAINT FK_Matricula_Alumnos FOREIGN KEY (Cod_Alumno) REFERENCES Alumnos(Cod_Alumno)
 ); 
 
-SET SERVEROUTPUT ON
-CREATE OR REPLACE PROCEDURE modificarPrecioCurso(minimoAlumnos IN NUMBER)
+CREATE OR REPLACE FUNCTION numeroAlumnos(c IN NUMBER, e IN NUMBER)RETURN NUMBER
 AS
-    v_porcentajeDescuento Cursos.Descuento%TYPE;
-    v_codigoCurso Cursos.Cod_Curso%TYPE;
-    v_preciOriginal Cursos.Precio%TYPE;
+    v_numeroAlumnos NUMBER;
 BEGIN
-    FOR curso IN (SELECT c.Cod_Curso, c.Descuento FROM Cursos c WHERE EXISTS
-        (SELECT 1 FROM Edicion e WHERE c.Cod_Curso = e.Cod_Curso GROUP BY e.Cod_Curso HAVING COUNT(*) >= minimoAlumnos)) LOOP
+    SELECT COUNT(*) INTO v_numeroAlumnos FROM Matricula WHERE Cod_Curso = c AND Cod_Edicion = e;
+    RETURN v_numeroAlumnos;
 
-        v_codigoCurso := c.Cod_Curso;
-        v_porcentajeDescuento := c.Descuento;
-
-        SELECT Precio INTO v_preciOriginal FROM Cursos WHERE Cod_Curso = v_codigoCurso;
-        UPDATE Cursos SET Precio = v_preciOriginal * (1-v_porcentajeDescuento/100) WHERE Cod_Curso = v_codigoCurso;
-
-        DBMS_OUTPUT.PUT_LINE('Se ha modificado correctamente el precio del curso')
-    END LOOP;
-    COMMIT;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No se encontraron cursos con un mínimo de ' || minimoAlumnos || ' alumnos matriculados.');
+        RETURN 0;
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+        RAISE;
 END;
+
+SELECT c.Cod_Curso, c.Nombre AS Nombre_Curso, c.Descripcion,
+       e.Cod_Edicion, e.Fecha_Inicio, e.Fecha_Fin, e.Lugar,
+       ObtenerNumeroAlumnosMatriculados(c.Cod_Curso, e.Cod_Edicion) AS Numero_Alumnos_Matriculados
+FROM Cursos c
+JOIN Edicion e ON c.Cod_Curso = e.Cod_Curso
+WHERE c.Cod_Curso = 33;
