@@ -45,6 +45,8 @@ CREATE OR REPLACE TYPE tipoPurchaseOrder AS OBJECT(
     MEMBER FUNCTION sumLineItems RETURN NUMBER
 );
 
+CREATE TABLE PurchaseOrder OF tipoPurchaseOrder()NESTED TABLE ListLineItem STORE AS ListaItem;
+
 CREATE OR REPLACE TYPE BODY tipoPurchaseOrder AS
     MEMBER FUNCTION getPONo RETURN NUMBER IS
         BEGIN
@@ -60,7 +62,3 @@ CREATE OR REPLACE TYPE BODY tipoPurchaseOrder AS
             RETURN totalPrice;
         END;
 END;
-
-
-CREATE TABLE PurchaseOrder OF tipoPurchaseOrder()NESTED TABLE ListLineItem STORE AS ListaItem;
-
