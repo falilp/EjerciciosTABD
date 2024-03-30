@@ -167,3 +167,8 @@ a-Utilizando una secuencia.
 b-Utilizando una columna identidad. 
 
 [Solución](../Ejercicios/ejercicio7.sql).
+
+## Ejercicio 8
+Pasar el diagrama de clase al lenguaje PL/SQL.
+![Diagrama](../img/Captura8.PNG)
+[Solución](../Ejercicios/ejercicio8.sql).
